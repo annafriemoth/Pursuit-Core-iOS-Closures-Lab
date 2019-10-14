@@ -7,13 +7,17 @@ import UIKit
 
 // Your function here
 
+func applyKTimes(_ K: Int, _ closure: () -> ())  {
+    closure()
+}
+
 // Uncomment out the following lines to check your solution
 
-//var myVal = 0
-//applyKTimes(5) {
-//    myVal += 1
-//}
-//assert(myVal == 5, "Expected myVal to be five, but was \(myVal)")
+var myVal = 0
+applyKTimes(5) {
+    myVal += 1
+}
+assert(myVal == 5, "Expected myVal to be five, but was \(myVal)")
 
 
 // Question Two
@@ -21,6 +25,12 @@ import UIKit
 // Write a function called multiples(of:in) that takes in an array of Ints and returns all of the Ints that are a multiple of a given number n.  Use filter in your function.
 
 // Your function here
+
+func multiples(_ numbers: [Int], _ n: [Int]) -> [Int] {
+    if (numbers % n == 0) {
+        print(n)
+}
+}
 
 // Uncomment out the following lines to check your solution
 
@@ -35,6 +45,39 @@ import UIKit
 // Write a function called largestValue(in:) that finds the largest Int in an array of Ints. Use reduce to solve this exercise.
 
 // Your function here
+func largestValue(in numbers: [Int]) -> Int {
+    // using guard to ensure an array is not empty
+    //guard numbers.count > 0 else { return -1}
+        
+    // using guard to get the first element
+    guard let first = numbers.first else { return -1 }
+    
+//    if let first = numbers.first {
+//        // ONLY have access to first inside the if let statement
+//        print(first)
+//    } else {
+//        // first - DOES NOT COMPILE
+//    }
+        
+    // using trailing closure syntax to solve reduce exercise
+    let result = numbers.reduce(first) { prevResult, currentValue in
+        if  prevResult > currentValue {
+            return prevResult
+        } else {
+        return currentValue
+        }
+    }
+    // 1. numbers.reduce(0, +)
+    /* 2. numbers.reduce(0) { prevResult, currentValue
+     }
+    */
+    return result
+}
+
+let largestResult = largestValue(in: [56, 100, -56, 0, 208])
+print(largestResult)
+
+print(largestValue)
 
 // Uncomment out the following lines to check your solution
 
